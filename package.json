@@ -1,0 +1,17 @@
+{
+  "name": "mcd",
+  "version": "0.0.1",
+  "bin": {
+    "mcd": "./index.js"
+  },
+  "dependencies": {
+    "bignumber.js": "^6.0.0",
+    "cli-table": "^0.3.1",
+    "cli-table2": "^0.2.0",
+    "commander": "^3.0.1",
+    "dotenv": "^5.0.0",
+    "trongrid": "^1.2.4",
+    "tty-table": "^2.8.5",
+    "web3": "1.0.0-beta.33"
+  }
+}
