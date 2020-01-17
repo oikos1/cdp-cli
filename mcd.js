@@ -11,6 +11,9 @@ program
 program
   .command('gem <cmd> [args...]', 'Gem Manager', {executableFile: './cmd/gem.js'})
 
+program
+  .command('sai <cmd> [args...]', 'Sai Manager', {executableFile: './cmd/sai.js'})
+
 program.parse(process.argv);
 
 

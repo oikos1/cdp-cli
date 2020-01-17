@@ -1,19 +1,19 @@
 {
   "mainnet": {
-    "weth": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "weth": "TSFkwVWYyG5Z6jcNsfFi1FZAzsQtwaHYJg",
     "mkr":  "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
-    "pip":  "0x729D19f657BD0614b4985Cf1D82531c67569197B",
-    "pep":  "0x99041F808D598B782D5a3e498681C2452A31da08",
-    "dai":  "0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359",
+    "pip":  "TWkH8HDUNiXuB8Bton4U2yjPuP1hWi7Ufw",
+    "pep":  "TVv1xJYJHMLMy6MYKyfXQ8TxsLSQfLyBLa",
+    "sai":  "TDYQUMKVhN6hFMyeaoM5nAAQWu1u3P3os9",
     "peth": "0xf53ad2c6851052a81b42133467480961b2321c09",
-    "tub":  "TRZXoni7NszLegffeaM26oLWUCNdCJFGSS",
-    "vox":  "0x9b0f70df76165442ca6092939132bbaea77f2d7a"
+    "tub":  "TUv3GduUqW6YLVtLibSDhjJJjug19L7gtL",
+    "per":  "TNntSwsaPuZQUUc2cDUQ3etgRz5LgBQM9u",
+    "vox":  "TAcKCdpzuwRGQz2iDfNwt1jPcKxBarrLGg"
   },
   "labels" : {
     "array": ["cap", "mat","tax","fee", "axe","gap"]
   },
   "credentials": {
-    "privateKey" : "756cef81f464f7bf2230ba3c88117de9e25ec3bb457ea294d13935f465c34672",
-    "address" : "TBXBJAA6j2To6r9ohTS5d5JXVCZzHTD61v"   
+    "privateKey" : "1e63d2b4e71dcf6ac149688872f479126f75079f9d4266cbb5d68902fdef8d1a"
   }
 }
