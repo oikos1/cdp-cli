@@ -19,11 +19,11 @@ let vox = lib.u.loadContract(lib.addresses.vox);
   .command('<id> wipe <wad>', 'Join & wipe dai')
 
  program
-  .command('open')
+  .command('open <lad>')
   .description('clone a repository into a newly created directory')
-  .action(() => {
+  .action((lad) => {
     tub.then(async(result) => {
-        result.open().send(lib.opts)
+        result.open(lad).send(lib.opts)
         .then(async next => {
             let promises = [];           
             let header = headers.cup;
@@ -37,6 +37,7 @@ let vox = lib.u.loadContract(lib.addresses.vox);
               res.art   = res.art.toString();
               res.ink   = res.ink.toString();
               res.ire   = res.ire.toString();
+              res.safe  = true;
               promises.push(res);              
             } else {
               return;
@@ -79,7 +80,8 @@ program
             return next ;
         }).then(async (next) => {
             let promises = []
-            for (let i=1; i<= lib.web3.utils.toDecimal(next);i++) {
+            //console.log("next", lib.web3.web3)
+            for (let i=1; i<= lib.web3.web3.utils.toDecimal(next);i++) {
                 let res = await result.cups(  lib.u.toBytes32(i) ).call() ;
                 if (res.lad != '410000000000000000000000000000000000000000')
                   res.id    = i;
@@ -175,7 +177,17 @@ program
         });
     })
 });  
-
+program
+.command('give <id> <lad>')
+.description('give cup to another lad')
+.action( (id, lad) => {
+    tub.then((result) => {
+        result.give(lib.u.toBytes32(id), lad).send(lib.opts)
+        .then(next => {
+            console.log("got ", next)
+        });
+    })
+}); 
 program
 .command('draw <id> <wad>')
 .description('issue the specified amount of dai stablecoins')

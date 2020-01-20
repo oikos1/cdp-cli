@@ -1,14 +1,14 @@
 {
   "mainnet": {
-    "weth": "TSFkwVWYyG5Z6jcNsfFi1FZAzsQtwaHYJg",
-    "mkr":  "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
+    "weth": "TSDkCa7uYoHs7fGJsAL8FRFLvCnvUHCx25",
+    "mkr":  "TMp5thNwAT1MWHag8gJFWmnjuJUJMJmwxT",
     "pip":  "TWkH8HDUNiXuB8Bton4U2yjPuP1hWi7Ufw",
     "pep":  "TVv1xJYJHMLMy6MYKyfXQ8TxsLSQfLyBLa",
-    "sai":  "TDYQUMKVhN6hFMyeaoM5nAAQWu1u3P3os9",
+    "sai":  "TB5ybQqDXtFHLtU8UkYPkaeVv1YascNzgW",
     "peth": "0xf53ad2c6851052a81b42133467480961b2321c09",
-    "tub":  "TUv3GduUqW6YLVtLibSDhjJJjug19L7gtL",
+    "tub":  "TAfeEhJmXr8rVr8sGmnjfy9jxjkcicvxDR",
     "per":  "TNntSwsaPuZQUUc2cDUQ3etgRz5LgBQM9u",
-    "vox":  "TAcKCdpzuwRGQz2iDfNwt1jPcKxBarrLGg"
+    "vox":  "TNZaHfcsa9HzM1DNJjWtWW5WFdvoFCYvhF"
   },
   "labels" : {
     "array": ["cap", "mat","tax","fee", "axe","gap"]
