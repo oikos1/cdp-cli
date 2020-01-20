@@ -1,14 +1,14 @@
 {
   "mainnet": {
-    "weth": "TSDkCa7uYoHs7fGJsAL8FRFLvCnvUHCx25",
-    "mkr":  "TMp5thNwAT1MWHag8gJFWmnjuJUJMJmwxT",
+    "weth": "TJkNnk4vLB6WGf2BRWQKsU8oMhoizWvx6t",
+    "mkr":  "TDSxsvZJAHxUovnb1vk2PJpKU9v8aUMTDH",
     "pip":  "TWkH8HDUNiXuB8Bton4U2yjPuP1hWi7Ufw",
     "pep":  "TVv1xJYJHMLMy6MYKyfXQ8TxsLSQfLyBLa",
-    "sai":  "TB5ybQqDXtFHLtU8UkYPkaeVv1YascNzgW",
-    "peth": "0xf53ad2c6851052a81b42133467480961b2321c09",
-    "tub":  "TAfeEhJmXr8rVr8sGmnjfy9jxjkcicvxDR",
+    "sai":  "TRpnx5vnNe7oZTh8TAtgDSdm9GpH33NjGF",
+    "peth": "TPL91wgF7kTeKRrjqv9GLe7NqpRbSVi8eH",
+    "tub":  "TP8fWiYiMJfBHb1MDmE7qskPfRxijB1fpL",
     "per":  "TNntSwsaPuZQUUc2cDUQ3etgRz5LgBQM9u",
-    "vox":  "TNZaHfcsa9HzM1DNJjWtWW5WFdvoFCYvhF"
+    "vox":  "TLYeunPntw36RjGTXeW7gYRnyiFVFmjmk5"
   },
   "labels" : {
     "array": ["cap", "mat","tax","fee", "axe","gap"]
