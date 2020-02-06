@@ -6,24 +6,20 @@ const chalk = require("chalk");
 const headers = require("../config/headers");
 
 
-let tub =  lib.u.loadContract(lib.addresses.tub);
+let tub = lib.u.loadContract(lib.addresses.tub);
 let vox = lib.u.loadContract(lib.addresses.vox);
 
  program
   .version('0.1.0')
-  .command('count [<owner>]', 'Cup count' )
-  .command('<id> cup', 'Cdp state')
-  .command('<id> lock <wad>', 'Join & lock collaterals')
-  .command('<id> free <wad>', 'Free & exit collateral')
-  .command('<id> draw <wad>', 'Draw & exit dai')
-  .command('<id> wipe <wad>', 'Join & wipe dai')
 
  program
-  .command('open <lad>')
-  .description('clone a repository into a newly created directory')
+  .command('open [lad]')
+  .description('create a new cup (collateralized debt position)')
   .action((lad) => {
+    if (!lad)
+      lad = "410000000000000000000000000000000000000000";
     tub.then(async(result) => {
-        result.open(lad).send(lib.opts)
+        result.open().send(lib.opts)
         .then(async next => {
             let promises = [];           
             let header = headers.cup;
@@ -60,15 +56,6 @@ let vox = lib.u.loadContract(lib.addresses.vox);
     })
   });
 
-
-
-program
-  .command('free')
-  .description('clone a repository into a newly created directory')
-  .action(() => {
-    console.log("free!");
-  });
-
 program
 .command('ls [owner]', {isDefault: true})
 .description('List Cups')
@@ -79,11 +66,12 @@ program
         .then(next => {
             return next ;
         }).then(async (next) => {
+          console.log("number of cups", lib.web3.web3.utils.toDecimal(next))
             let promises = []
             //console.log("next", lib.web3.web3)
             for (let i=1; i<= lib.web3.web3.utils.toDecimal(next);i++) {
                 let res = await result.cups(  lib.u.toBytes32(i) ).call() ;
-                if (res.lad != '410000000000000000000000000000000000000000')
+                //if (res.lad != '410000000000000000000000000000000000000000')
                   res.id    = i;
                   res.lad   = lib.CryptoUtils.getBase58CheckAddress(lib.u.hexStr2byteArray(res.lad))
                   res.art   = res.art.toString();
@@ -113,46 +101,26 @@ program
 });
 
 program
-.command('view <id>')
+.command('view <cup>')
 .description('View Cup')
-.action( (id) => {
+.action( (cup) => {
     let header = headers.cup;
     tub.then(async (result) => {
             let promises = [];            
-            let res = await result.cups(  lib.u.toBytes32(id) ).call();
+            let res = await result.cups(  lib.u.toBytes32(cup) ).call();
             //console.log(res)
             if (res.lad != '410000000000000000000000000000000000000000') {
-              res.id    = id;
+              res.id    = cup;
               res.lad   = lib.CryptoUtils.getBase58CheckAddress(lib.u.hexStr2byteArray(res.lad))
               res.art   = res.art.toString();
               res.ink   = res.ink.toString();
               res.ire   = res.ire.toString();
-              res.safe  = await result.safe( lib.u.toBytes32(id) ).send(lib.opts);
+              res.safe  = await result.safe( lib.u.toBytes32(cup) ).send(lib.opts);
               promises.push(res);              
             } else {
               return;
             }
               
-            /*
-              let tab = await result.tab(  lib.u.toBytes32(id) ).send(lib.opts);
-              let tag = await result.tag().call();
-              console.log("tag", tag)
-              console.log("tag", (tag.wad / (10**27)), "ink", (res.ink / (10**6)));
-              console.log("pro", (tag.wad / (10**27)) * (res.ink / (10**6)))
-              //console.log("multiplying", lib.web3.utils.fromWei(tag.wad.toString()), "*", res.ink)
-              console.log("pro", lib.u.rmul(tag.wad.toString(), res.ink.toString() ).toString());
-
-            vox.then(async (result) => {
-              let par = await result.par().send(lib.opts);
-              console.log("par", par.toString())
-              console.log("multiplying", tab.toString(), "*", par.toString());
-              console.log("con", lib.u.rmul(tab.toString(), par.toString() ).toString());
-  
-              let min = lib.u.rmul(lib.u.rmul(tab.toString(), par.toString() ), 1500000000000000000000000000)
-              console.log("min", min.toString());
-            })
-            */
-
             let t1 = Table(header, promises, {
               borderStyle: 1,
               borderColor: "blue",
@@ -167,39 +135,83 @@ program
 });  
 
 program
-.command('lock <id> <wad>')
+.command('lock <cup> <wad>')
 .description('post additional PETH collateral to a cup')
-.action( (id, wad) => {
+.action( (cup, wad) => {
     tub.then((result) => {
-        result.lock(lib.u.toBytes32(id), lib.u.toWei(wad)).send(lib.opts)
+        result.lock(lib.u.toBytes32(cup), lib.u.toWei(wad)).send(lib.opts)
         .then(next => {
             console.log("got ", next)
         });
     })
 });  
+
+
 program
-.command('give <id> <lad>')
+.command('give <cup> <lad>')
 .description('give cup to another lad')
-.action( (id, lad) => {
+.action( (cup, lad) => {
     tub.then((result) => {
-        result.give(lib.u.toBytes32(id), lad).send(lib.opts)
+        result.give(lib.u.toBytes32(cup), lad).send(lib.opts)
         .then(next => {
             console.log("got ", next)
         });
     })
 }); 
+
 program
-.command('draw <id> <wad>')
+.command('draw <cup> <wad>')
 .description('issue the specified amount of dai stablecoins')
-.action( (id, wad) => {
+.action( (cup, wad) => {
     tub.then((result) => {
-        result.draw(lib.u.toBytes32(id), lib.u.toWei(wad)).send(lib.opts)
+        result.draw(lib.u.toBytes32(cup), lib.u.toWei(wad)).send(lib.opts)
         .then(next => {
             console.log("got ", next)
         }).catch(function (err) {
             console.log(err);
             //console.log(chalk.red(lib.tronWeb.toUtf8(err.output.resMessage)));                              
-        }) 
+        });
+    })
+});  
+
+program
+  .command('free <cup> <wad>')
+  .description('remove excess PETH collateral from a cup')
+  .action((cup, wad) => {
+    tub.then((result) => {
+        console.log("freeing with pars", lib.u.toBytes32(cup), lib.u.toWei(wad).toString())
+        result.free(lib.u.toBytes32(cup), lib.u.toWei(wad).toString()).send(lib.opts)
+        .then(next => {
+            console.log("got ", next)
+        }).catch((err)=>console.log(chalk.red(err.error)));
+
+    }).catch((err)=>console.log(chalk.red(err.error)));
+  });
+
+program
+.command('wipe <cup> <wad>')
+.description('repay some portion of your existing dai debt')
+.action( (cup, wad) => {
+    
+    tub.then((result) => {
+        console.log("wiping with pars", lib.u.toBytes32(cup), lib.u.toWei(wad).toString())
+        result.wipe(lib.u.toBytes32(cup), lib.u.toWei(wad).toString()).send(lib.opts)
+        .then(next => {
+            console.log("got ", next)
+        }).catch((err)=>console.log(chalk.red(err.error)));
+
+    }).catch((err)=>console.log(chalk.red(err.error)));
+}); 
+
+program
+.command('bite <cup>')
+.description('initiate liquidation of an undercollateral cup')
+.action( (cup) => {
+    tub.then((result) => {
+        result.bite(lib.u.toBytes32(cup)).send(lib.opts)
+        .then(next => {
+            console.log("got ", next)
+        });
     })
 });  
 
